@@ -66,7 +66,6 @@ export class MenuPrincipalComponent implements OnInit {
       this.setTheme();
     }
     this.opened = true;
-    this.rolUsuario = this.global.usuario.roles;
   }
 
 

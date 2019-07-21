@@ -1,1 +1,58 @@
-MODULO DE USUARIO
+<div class="contenedorPagina">
+    <div class="container">
+        <div class="row contenedorTituloPagina">
+            <div class="col-12">
+                <h3 class="tituloPagina">GESTION DE USUARIOS</h3>
+            </div>
+            <div class="col-12">
+                <h3 class="subtituloPagina">
+                    Administrar usuarios del sistema
+                </h3>
+            </div>
+        </div>
+        <div class="contenedorFormulario">
+            <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table" id="tablaUsuarios">
+                    <thead class="thead-light">
+                        <tr class="custom-header-table">
+                            <th scope="col">
+                                NOMBRE
+                            </th>
+                            <th scope="col">
+                                TIPO DOCUMENTO
+                            </th>
+                            <th scope="col">
+                                N'UMERO DOCUMENTO
+                            </th>
+                            <th scope="col">
+                                ESTADO
+                            </th>
+                            <th scope="col">
+                                ACCION
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-body-table">
+                        <tr *ngFor="let usuario of usuarios">
+                            <td>
+                                {{usuario.nombre}}
+                            </td>
+                            <td>
+                                {{usuario.tipoDocumento}}
+                            </td>
+                            <td>
+                                {{usuario.numDocumento}}
+                            </td>
+                            <td>
+                                {{usuario.estado}}
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

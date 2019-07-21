@@ -29,13 +29,15 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   entryComponents: [],
   exports: [
+
     OnlyNumberDirective,
     OnlyLettersAndNumbersDirective
     , OnlyLettersDirective
     , FormsModule
     , ReactiveFormsModule
     , NgbModule
-    , UppercaseInputDirective],
+    , UppercaseInputDirective,
+    CommonModule],
   providers: [AlertService, NgbActiveModal]
 })
 export class SharedModule { }

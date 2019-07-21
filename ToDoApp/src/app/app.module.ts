@@ -2,7 +2,6 @@ import { AuthGuard } from './shared/guards/authGuard/auth.guard';
 import { UrlService } from './shared/services/url.service';
 import { MainFrameModule } from './components/mainframe/mainframe.module';
 import { GlobalService } from './shared/global.service';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +29,6 @@ import { CrudUsuariosModule } from './components/crud-usuarios/crud-usuarios.mod
     NgxSpinnerModule,
     MainFrameModule,
     SharedModule,
-    BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,

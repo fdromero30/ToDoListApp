@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
     , private router: Router
     , private modalService: NgbModal
   ) {
-    this.usuario = new UsuarioModel('', '', '', '', '');
   }
   ngOnInit() {
 

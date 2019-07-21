@@ -9,7 +9,7 @@ import { ConstantesService } from './services/constantes.service';
 export class GlobalService {
 
   itemValue = new Subject();
-  usuario: UsuarioModel = new UsuarioModel('', '', '', '', '');
+  usuario: any;
   apiKey: string = null;
   userId: number = null;
   userName: string = null;
