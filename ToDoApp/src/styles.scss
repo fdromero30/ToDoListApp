@@ -29,9 +29,6 @@ input[type="checkbox"] {
   opacity: 1 !important;
   margin-top: 1px !important;
 }
-    // #toast-container > div {
-    //   opacity: 1;
-    // }
 
 @function color($key) {
   @return map-get($theme-colors, $key);
@@ -169,31 +166,11 @@ $themes: (
   .contenedorPagina {
     max-height: 90%;
   }
-
-.card-columns {
-    -webkit-column-count: 3;
-    column-count: 1 !important;
-    -webkit-column-gap: 1.25rem;
-    column-gap: 1.25rem;
-    orphans: 1;
-    widows: 1;
-
-}
 }
 @media screen and (min-width: 720px) and (max-width:840px) {
   .contenedorPagina {
     max-height: 90%;
   }
-
-.card-columns {
-    -webkit-column-count: 3;
-    column-count: 2 !important;
-    -webkit-column-gap: 1.25rem;
-    column-gap: 1.25rem;
-    orphans: 1;
-    widows: 1;
-
-}
 }
 /*
  Implementaciòn de Temas
@@ -231,48 +208,17 @@ $themes: (
       .tituloApp{
         color: themed("ligth");
       }
-      .sombreado-tabla {
-        background-color: themed("navColor");
-        color: themed("ligth");
-      }
-
-      .sombreado-tabla > td > button {
-        border-color: white;
-      }
-
+     
       .footerApp {
         background-color: themed("fondo");
         color: themed("ligth");
         border-top: 1px themed("ligth") solid;
       }
-      .menusuario {
-        button:focus {
-          border: 1px solid themed("ligth");
-        }
-      }
-
-      .filtro-ayuda .btn-rounded {
-        color: themed("ligth");
-        background-color: themed("primary");
-      }
-      .contenedor-ayuda {
-        background-color: themed("secondary");
-      }
-      .menusuario .username {
-        color: themed("ligth") !important;
-      }
+    
       .subtituloPagina {
         color: themed("tituloPagina") !important;
       }
-      .bg-primary {
-        // estilo de fondo del datepicker
-        background-color: themed("secondary");
-      }
-      .btn-link {
-        // estilo de fondo de las flechas de navegación del datepicker
-        color: themed("primary") !important;
-      }
-
+    
       .menu-footer {
         background-color: themed("ligth");
       }
