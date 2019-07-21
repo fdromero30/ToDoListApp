@@ -1,8 +1,9 @@
 import { GlobalService } from '../../shared/global.service';
-import { Component, Renderer2, Inject, OnInit, Input } from '@angular/core';
+import { Component, Renderer2, Inject, OnInit, Input, OnDestroy } from '@angular/core';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalOptions } from 'src/app/shared/models/modal.model';
+import { ConstantesService } from 'src/app/shared/services/constantes.service';
 
 @Component({
     selector: 'app-crud-usuarios-detalle',
@@ -16,11 +17,17 @@ export class CrudUsuariosDetalleComponent implements OnInit {
     @Input() Usuario: UsuarioModel
     public editar: boolean;
     public modalOptions: ConfirmationModalOptions;
+    public estados;
+    public tipos;
+
 
     constructor(private activeModal: NgbActiveModal) {
 
+        this.estados = ConstantesService.estados;
+        this.tipos = ConstantesService.tipoDocumentos;
+
         this.modalOptions = new ConfirmationModalOptions(
-            'Confirmacion', 'Esta seguro de guardar los cambios?', 'SI', 'NO', 'fas fa-address-card'
+            'Confirmación', 'Está seguro de guardar los cambios?', 'SI', 'NO', 'fas fa-address-card'
             , true, false, 'Guardar', null, 'btn-secondary pull-right');
     }
 
@@ -39,15 +46,11 @@ export class CrudUsuariosDetalleComponent implements OnInit {
      */
 
     close(event?) {
-
         if (event != 'cerrar') {
             this.activeModal.close({ usuario: this.Usuario, edicion: this.editar });
         } else {
-
             this.activeModal.close();
-
         }
-
     }
 
     /**
@@ -72,4 +75,7 @@ export class CrudUsuariosDetalleComponent implements OnInit {
             this.modalOptions.disabled = false;
         }
     }
+
+
 }
+

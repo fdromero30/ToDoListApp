@@ -24,7 +24,7 @@
                     Tipo Documento
                 </label>
                 <select class="form-control" id="selectTipoDocUsuario">
-
+                    <option *ngFor="let tipo of tipos"></option>
                 </select>
             </div>
             <div class="col-12">
@@ -39,7 +39,9 @@
                     Estado
                 </label>
                 <select class="form-control" id="selectEstadoUsuario">
-
+                    <option *ngFor="let estado of estados">
+                        {{estado}}
+                    </option>
                 </select>
             </div>
             <div class="col-12" style="padding-top: 1%; padding-bottom:1%">

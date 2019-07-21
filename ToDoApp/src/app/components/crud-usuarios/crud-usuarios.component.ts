@@ -1,6 +1,6 @@
 import { GlobalService } from '../../shared/global.service';
-import { Component, Renderer2, Inject, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, Renderer2, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/platform-browser';
 import { AssetsService } from '../../shared/services/assets.service';
@@ -19,16 +19,21 @@ import { ConfirmationModalOptions } from 'src/app/shared/models/modal.model';
     templateUrl: './crud-usuarios.component.html',
     styleUrls: ['./crud-usuarios.component.scss']
 })
-export class CrudUsuariosComponent implements OnInit {
+export class CrudUsuariosComponent implements OnInit, OnDestroy {
 
     public usuarios: UsuarioModel[];
     public modalOptions: ConfirmationModalOptions;
+    private peticionConsulta: Subscription;
+    private peticionEdicion: Subscription;
+    private peticionGuardar: Subscription;
+    private peticionmEliminar: Subscription;
+
 
     constructor(private modalService: NgbModal, private spinner: NgxSpinnerService, private urlService: UrlService,
         private global: GlobalService, private alertService: AlertService) {
 
         this.modalOptions = new ConfirmationModalOptions(
-            'Confirmacion Eliminacion', 'Esta seguro de Eliminar el Usuario?', 'SI', 'NO', 'fas fa-user-minus', false, null, 'Eliminar', false, 'btn-danger col-lg-5 col-md-12  col-sm-12 col-xs-12');
+            'Confirmacion Eliminación', 'Esta seguro de Eliminar el Usuario?', 'SI', 'NO', 'fas fa-user-minus', false, null, 'Eliminar', false, 'btn-danger col-lg-5 col-md-12  col-sm-12 col-xs-12');
         this.usuarios = [];
         let user = new UsuarioModel('USUARIO PRUEBA', 'ACTIVO', new UsuarioPkModel('CEDULA', '10239267890'));
         let user2 = new UsuarioModel('USUARIO PRUEBA 2', 'ACTIVO', new UsuarioPkModel('CEDULA', '10229383763'));
@@ -76,7 +81,7 @@ export class CrudUsuariosComponent implements OnInit {
         const serviceProvider = 'usuario';
 
         const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
-        this.global.putGenerico(url, usuario).subscribe(
+        this.peticionEdicion = this.global.putGenerico(url, usuario).subscribe(
             data => {
                 this.spinner.hide();
                 this.obtenerUsuarios();
@@ -96,7 +101,7 @@ export class CrudUsuariosComponent implements OnInit {
         this.spinner.show();
         const serviceProvider = 'usuario';
         const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
-        this.global.postGenerico(url, usuario).subscribe(
+        this.peticionGuardar = this.global.postGenerico(url, usuario).subscribe(
             data => {
                 this.obtenerUsuarios();
                 this.spinner.hide();
@@ -116,7 +121,7 @@ export class CrudUsuariosComponent implements OnInit {
         this.spinner.show();
         const serviceProvider = 'usuario';
         const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
-        this.global.getGenerico(url).subscribe(
+        this.peticionConsulta = this.global.getGenerico(url).subscribe(
             data => {
                 this.usuarios = data;
                 this.spinner.hide();
@@ -141,7 +146,7 @@ export class CrudUsuariosComponent implements OnInit {
             queryParams.push(['usuarioPK', usuario.usuarioPK]);
             const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, queryParams), this.urlService.hostAPI);
 
-            this.global.deleteGenerico(url).subscribe(
+            this.peticionmEliminar = this.global.deleteGenerico(url).subscribe(
                 data => {
                     this.obtenerUsuarios();
                     this.alertService.generateAlertSuccess('Se eliminó el usuario con exitos', '');
@@ -162,5 +167,20 @@ export class CrudUsuariosComponent implements OnInit {
     cathcException(error) {
         this.alertService.generateAlertError(error, 'Error');
         this.spinner.hide();
+    }
+
+
+    /**
+     * @author fromero
+     * Se realiza la cancelación de las subscripcioones si se sale o destruye el componente
+     */
+    ngOnDestroy() {
+
+
+        this.peticionConsulta.unsubscribe();
+        this.peticionEdicion.unsubscribe();
+        this.peticionGuardar.unsubscribe();
+        this.peticionmEliminar.unsubscribe();
+
     }
 }

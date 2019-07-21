@@ -12,6 +12,11 @@ export class ConstantesService {
   public static temaGris = 'gris-blanco';
 
 
+  public static estados = ['ACTIVO', 'INACTIVO'];
+  public static tipoDocumentos = ['CÉDULA', 'PASAPORTE', 'TARJETA DE IDENTIDAD'];
+
+
+
   /* CONSTANTES */
 
   public static HORAS_DIA = ['01:00 am', '02:00 am', '03:00 am', '04:00 am', '05:00 am',
