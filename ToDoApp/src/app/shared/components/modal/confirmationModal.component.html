@@ -15,17 +15,9 @@
   </div>
 </ng-template>
 
-<!-- <button *ngIf="modalOptions.icon" class="btn btn-secondary pull-right align-bottom" [disabled]="modalOptions.disabled"
-  (click)="open(modalconfirmacion)">
-  <span class="{{modalOptions.icon}}"></span>
-</button> -->
 
-<button *ngIf="modalOptions.buttonName" class="btn {{modalOptions.clase}}"
-  [disabled]="modalOptions.disabled"
-  [ngClass]="(modalOptions.disabled)?'btnDisabled btn ':'btn '"
-  (click)="open(modalconfirmacion)">
+<button *ngIf="modalOptions.buttonName" class="btn {{modalOptions.clase}}" [disabled]="modalOptions.disabled"
+  [ngClass]="(modalOptions.disabled)?'btnDisabled btn ':'btn '" (click)="open(modalconfirmacion)">
   <em *ngIf="modalOptions.icon" class="{{modalOptions.icon}}"></em>
   {{modalOptions.buttonName}}
 </button>
-
-<!-- pull-right align-bottom -->

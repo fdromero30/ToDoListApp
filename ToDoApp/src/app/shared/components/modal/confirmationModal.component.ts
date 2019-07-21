@@ -22,21 +22,33 @@ export class ConfirmationModalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
- 
+
   }
   ngOnInit() {
 
     this.modalOptions = this.modalOptions;
 
   }
+
+  /**
+   * METODO DE INVOCACION ABRIR MODAL
+   * @param content 
+   */
   open(content) {
     this.activeModal = this.modalService.open(content, { centered: false });
   }
+
+  /**
+   * METODO DE CONFIRMACION DE OPCIONES
+   */
   aceptar() {
     this.activeModal.close();
     this.modalResponse.emit([true, this.data]);
   }
 
+  /**
+   * METODO DE CANCELACION DE OPCIONES
+   */
   cancelar() {
     this.activeModal.close();
     this.modalResponse.emit([false, this.data]);
