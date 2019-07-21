@@ -39,14 +39,14 @@ export class MainframeComponent {
     this.menuprincipal = true;
   }
   /**
-   * 
+   * @author fromero
    */
   private obtenerConfiguracion() {
     this.setThemeInit();
   }
 
   /**
-   * 
+   * @author fromero
    */
   private setThemeInit() {
     // Recupera Tema Seleccionado
@@ -58,7 +58,7 @@ export class MainframeComponent {
   }
 
   /**
-   * 
+   * @author fromero
    * @param type 
    */
   public theme(type) {
@@ -74,7 +74,7 @@ export class MainframeComponent {
   }
 
   /**
-   * 
+   * @author fromero
    */
   public accionMenu() {
 

@@ -30,8 +30,11 @@ export class CrudUsuariosComponent implements OnInit {
         this.modalOptions = new ConfirmationModalOptions(
             'Confirmacion Eliminacion', 'Esta seguro de Eliminar el Usuario?', 'SI', 'NO', 'fas fa-user-minus', false, null, 'Eliminar', false, 'btn-danger col-lg-5 col-md-12  col-sm-12 col-xs-12');
         this.usuarios = [];
-        let user = new UsuarioModel('USUARIO PRUEBA', 'ACTIVO', new UsuarioPkModel('CEDULA', '101212312312'));
-        this.usuarios.push(user, user, user);
+        let user = new UsuarioModel('USUARIO PRUEBA', 'ACTIVO', new UsuarioPkModel('CEDULA', '10239267890'));
+        let user2 = new UsuarioModel('USUARIO PRUEBA 2', 'ACTIVO', new UsuarioPkModel('CEDULA', '10229383763'));
+        let user3 = new UsuarioModel('USUARIO PRUEBA 3', 'ACTIVO', new UsuarioPkModel('PASAPORTE', '1023789065'));
+
+        this.usuarios.push(user, user2, user3);
     }
 
     ngOnInit() {
@@ -39,6 +42,7 @@ export class CrudUsuariosComponent implements OnInit {
     }
 
     /**
+     * @author fromero
      * Lanza el modal de edición o creación y espera la respuesta del modal
      * @param usuarioEdicion 
      */
@@ -56,28 +60,26 @@ export class CrudUsuariosComponent implements OnInit {
                     this.guardarUsuario(result.usuario);
                 }
                 console.log('resultado del modal', result)
-
             }
-
-        })
+        });
     }
 
 
     /**
+     * @author fromero
      * actualiza un usuario existente
      * @param usuario 
      */
     editarUsuario(usuario: UsuarioModel) {
 
         this.spinner.show();
-        const serviceProvider = 'actualizarUsuario';
+        const serviceProvider = 'usuario';
 
         const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
-
-        this.global.postGenerico(url, usuario).subscribe(
+        this.global.putGenerico(url, usuario).subscribe(
             data => {
-
                 this.spinner.hide();
+                this.obtenerUsuarios();
             }, err => {
                 this.cathcException('No es posible Actualizar el usuario en este momento');
             }
@@ -85,20 +87,20 @@ export class CrudUsuariosComponent implements OnInit {
     }
 
     /**
+     * @author fromero
      * guarada un nuevo Usuario
      * @param usuario 
      */
     guardarUsuario(usuario: UsuarioModel) {
 
         this.spinner.show();
-        const serviceProvider = 'guardarNuevoUsuario';
-
+        const serviceProvider = 'usuario';
         const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
-
         this.global.postGenerico(url, usuario).subscribe(
             data => {
-
+                this.obtenerUsuarios();
                 this.spinner.hide();
+                this.alertService.generateAlertSuccess('Se creo el usuario con exito', '');
             }, err => {
                 this.cathcException('No es posible Crear el usuario en este momento');
             }
@@ -107,18 +109,16 @@ export class CrudUsuariosComponent implements OnInit {
 
 
     /**
+     * @author fromero
      * Obtiene la lista principal de usuarios
      */
     obtenerUsuarios() {
         this.spinner.show();
-        const serviceProvider = 'consultarUsuarios';
-
-
+        const serviceProvider = 'usuario';
         const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
-
         this.global.getGenerico(url).subscribe(
             data => {
-
+                this.usuarios = data;
                 this.spinner.hide();
             }, err => {
                 this.cathcException('No es posible obtener los usuarios en este momento');
@@ -128,20 +128,23 @@ export class CrudUsuariosComponent implements OnInit {
 
 
     /**
+     * @author fromero
      * metodo para eliminar usuario seleccionado
      * @param usuario 
      */
     eliminarUsuario(usuario, event) {
         if (event[0]) {
-
             this.spinner.show();
             const serviceProvider = 'eliminarUsuario';
 
-            const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
+            const queryParams: Array<[string, string]> = new Array<[string, string]>();
+            queryParams.push(['usuarioPK', usuario.usuarioPK]);
+            const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, queryParams), this.urlService.hostAPI);
 
-            this.global.postGenerico(url, usuario).subscribe(
+            this.global.deleteGenerico(url).subscribe(
                 data => {
-
+                    this.obtenerUsuarios();
+                    this.alertService.generateAlertSuccess('Se eliminó el usuario con exitos', '');
                     this.spinner.hide();
                 }, err => {
                     this.cathcException('No es posible Eliminar el usuario en este momento');
@@ -152,7 +155,7 @@ export class CrudUsuariosComponent implements OnInit {
     }
 
     /**
-     * 
+     * @author fromero  
      * @param error 
      */
 

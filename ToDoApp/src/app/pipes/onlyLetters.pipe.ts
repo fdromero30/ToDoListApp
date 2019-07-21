@@ -8,6 +8,7 @@ export class OnlyLettersDirective {
 
   constructor(private _el: ElementRef) { }
   /**
+   * @author fromero
    *  direcitiva para permitir el ingreso de letras solamente en un input
    * @param event 
    */

@@ -8,6 +8,11 @@ export class AuthGuard implements CanActivate {
 
     constructor(private router: Router, private alertService: AlertService, private globalService: GlobalService) { }
 
+    /**
+     * @author fromero
+     * @param route 
+     * @param state 
+     */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
         // AQUI SE DEBERIAN COLOCAR LAS VALIDACIONES DE ACCESO A PAGINAS COMO PERMISOS DE ROL O TOKENS EXISTENTES

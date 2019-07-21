@@ -1,14 +1,7 @@
-import { AlertService } from './shared/services/alert.service';
-import { UsuarioModel } from './models/usuario.model';
-import { GlobalService } from './shared/global.service';
-import { Component, OnInit } from '@angular/core';
-import { UrlService } from './shared/url.service';
-import { UrlControl } from './shared/models/generic.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ConstantesService } from './shared/services/constantes.service';
 
-declare var jQuery;
+import { Component, OnInit } from '@angular/core';
+
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +15,8 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {
   }
+
+
   ngOnInit() {
 
     this.router.navigate(['main/crud-usuarios']);

@@ -9,6 +9,7 @@ export class OnlyNumberDirective {
   constructor(private _el: ElementRef) { }
 
   /**
+   * @author fromero
    * Directiva para permitir el ingreso de numeros unicamente en un input
    * @param event 
    */

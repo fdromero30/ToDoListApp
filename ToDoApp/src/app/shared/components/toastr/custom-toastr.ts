@@ -59,6 +59,10 @@ export class CustomToastr extends Toast {
         super(toastrService, toastPackage);
     }
 
+    /**
+     * 
+     * @param event @author fromero
+     */
     action(event: Event) {
         event.stopPropagation();   
         this.toastPackage.triggerAction('cancelado');

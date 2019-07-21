@@ -70,7 +70,7 @@ export class MenuPrincipalComponent implements OnInit {
 
 
   /**
-   * 
+   * @author fromero
    * @param theme 
    */
   validarTema(theme) {
@@ -96,7 +96,7 @@ export class MenuPrincipalComponent implements OnInit {
   }
 
   /**
-   * 
+   * @author fromero
    * @param accion 
    */
   setAccesibilidad(accion: any) {
@@ -110,7 +110,7 @@ export class MenuPrincipalComponent implements OnInit {
 
 
   /**
-   * 
+   * @author fromero
    * @param temaSeleccionado 
    * @param event 
    */
@@ -126,7 +126,7 @@ export class MenuPrincipalComponent implements OnInit {
 
 
   /**
-   * 
+   * @author fromero
    * @param theme 
    */
   public restablecerAjustes(theme?: any) {
@@ -139,7 +139,7 @@ export class MenuPrincipalComponent implements OnInit {
 
 
   /**
-   * 
+   * @author fromero
    * @param error 
    */
   cathException(error) {

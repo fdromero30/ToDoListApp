@@ -22,6 +22,11 @@ export class GlobalService {
 
   }
 
+  /**
+   * @author fromero
+   * @param contentJSON 
+   * @param urlReq 
+   */
   public buildHeaders(contentJSON: boolean, urlReq: string) {
     const headers = new Headers();
     this.createSecurityOptions(headers, urlReq.includes('auth'));
@@ -34,6 +39,9 @@ export class GlobalService {
     return headers;
   }
 
+  /**
+   * @author fromero
+   */
   private cargaSessionContext() {
     const obj = {};
     obj[ConstantesService.USER_ID_HEADER] = sessionStorage.getItem(ConstantesService.USER_ID_HEADER);
@@ -44,11 +52,21 @@ export class GlobalService {
     return obj;
   }
 
+  /**
+   * 
+   * @param headers 
+   * @param envPass 
+   */
   private createSecurityOptions(headers: Headers, envPass?: boolean) {
     headers.append('Authorization', 'Bearer ' + sessionStorage.getItem(ConstantesService.TOKEN_HEADER));
 
   }
 
+  /**
+   * @author fromero
+   * @param url 
+   * @param cuerpo 
+   */
   public postGenerico(url: string, cuerpo?: any): any {
     console.log(url);
     const headers = this.buildHeaders(true, url);
@@ -60,6 +78,10 @@ export class GlobalService {
     );
   }
 
+  /**
+   * @author fromero
+   * @param url 
+   */
   public getGenerico(url: string): any { // la url debe traer los parametros en el path
     console.log(url);
     const headers = this.buildHeaders(true, url);
@@ -71,6 +93,11 @@ export class GlobalService {
     );
   }
 
+  /**
+   * @author fromero
+   * @param url 
+   * @param req 
+   */
   putGenerico(url: string, req: any): Observable<any> {
 
     const body = req;
@@ -83,10 +110,14 @@ export class GlobalService {
     );
   }
 
+
+  /**
+   * 
+   * @param uriService 
+   */
   deleteGenerico(uriService: string): any {
     console.log(uriService);
     const headers = this.buildHeaders(false, uriService);
-
     const options = new Object({ headers });
     return this.http.delete(uriService, options).subscribe((data) => {
       console.log(data);
@@ -94,72 +125,21 @@ export class GlobalService {
   }
 
 
-
-  public getPublic(url: string) {
-
-    return this.http.get(url).pipe(
-      timeoutWith(30000,
-        throwError('Tiempo Máximo Excedido')
-      ),
-      map(this.extractData),
-      catchError(this.handleError)
-    );
-  }
-  public postPublic(url: string) {
-    const header = {
-      ipHost: window.location.origin,
-      apiKey: this.apiKey,
-      userId: this.userId
-    };
-    const tokenAcceso = sessionStorage.getItem('Token');
-    const body = { header, tokenAcceso };
-
-    return this.http.post(url, JSON.stringify(body)).pipe(
-      timeoutWith(10000,
-        throwError('error')
-      ),
-      map(this.extractData),
-      catchError(this.handleError)
-    );
-  }
-
+  /**
+   * @author fromero
+   * @param res 
+   */
   private extractData(res) {
     const body = res;
     return body;
   }
+  /**
+   * @author fromero
+   * @param error 
+   */
   private handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
     return throwError(error);
-  }
-
-  public cerrarSesion() {
-    sessionStorage.removeItem('Token');
-    sessionStorage.removeItem('ExpiracionToken');
-    sessionStorage.removeItem('Usuario');
-    sessionStorage.removeItem('roles');
-    sessionStorage.removeItem('numDocumento');
-    sessionStorage.removeItem('tipoDocumento');
-  }
-
-  public setIdioma(value) {
-    this.itemValue.next(value);
-    sessionStorage.setItem('idioma', value);
-  }
-  public getIdioma() {
-    return sessionStorage.getItem('idioma');
-  }
-  public setUsuario(usuario) {
-    this.usuario = usuario;
-
-  }
-  public getUsuario() {
-    return this.usuario;
-  }
-
-  public replaceCardTextLine(text: string) {
-    return text
-      ? text.replace(new RegExp('\\\\n', 'g'), ', ')
-      : 'No Description';
   }
 
 }

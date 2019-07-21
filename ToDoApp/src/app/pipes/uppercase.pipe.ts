@@ -12,6 +12,7 @@ export class UppercaseInputDirective {
   constructor(public ref: ElementRef) { }
 
   /**
+   * @author fromero
    * Directiva que convierte a mayusculas un input
    * @param $event 
    */

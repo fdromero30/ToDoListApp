@@ -9,6 +9,7 @@ import { ConfirmationModalOptions } from 'src/app/shared/models/modal.model';
     templateUrl: './crud-usuarios-detalle.component.html',
     styleUrls: ['./crud-usuarios-detalle.component.scss']
 })
+
 export class CrudUsuariosDetalleComponent implements OnInit {
 
 
@@ -19,7 +20,8 @@ export class CrudUsuariosDetalleComponent implements OnInit {
     constructor(private activeModal: NgbActiveModal) {
 
         this.modalOptions = new ConfirmationModalOptions(
-            'Confirmacion', 'Esta seguro de guardar los cambios?', 'SI', 'NO', 'fas fa-address-card', true, false, 'Guardar', null, 'btn-secondary pull-right');
+            'Confirmacion', 'Esta seguro de guardar los cambios?', 'SI', 'NO', 'fas fa-address-card'
+            , true, false, 'Guardar', null, 'btn-secondary pull-right');
     }
 
     ngOnInit() {
@@ -32,6 +34,7 @@ export class CrudUsuariosDetalleComponent implements OnInit {
     }
 
     /**
+     * @author fromero
      * Metodo que cierra el modal y retorna el usuario modificado o creado para guardar
      */
 
@@ -48,7 +51,7 @@ export class CrudUsuariosDetalleComponent implements OnInit {
     }
 
     /**
-     * 
+     * @author fromero
      * @param event 
      */
     handlerModal(event) {
@@ -58,6 +61,7 @@ export class CrudUsuariosDetalleComponent implements OnInit {
     }
 
     /**
+     * @author fromero
      * metodo de validacion de formulario 
      */
     validarFormulario() {

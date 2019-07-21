@@ -22,14 +22,8 @@ export class UrlService {
 
   private getProvider(serviceProvider: string): string {
     switch (serviceProvider) {
-      case 'guardarNuevoUsuario':
-        return '/servicios/usuario/guardarNuevoUsuario';
-      case 'consultarUsuarios':
-        return '/servicios/usuario/';
-      case 'eliminarUsuario':
-        return '/servicios/usuario/eliminarUsuario';
-      case 'actualizarUsuario':
-        return '/servicios/usuario/actualizarUsuario';
+      case 'usuario':
+        return '/servicios/usuario';
       default:
         return '';
     }

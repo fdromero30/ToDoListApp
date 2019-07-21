@@ -9,6 +9,7 @@ export class OnlyLettersAndNumbersDirective {
   constructor(private _el: ElementRef) { }
 
   /**
+   * @author fromero
    * Direcriva para permitir el ingreso de letras y numeros unicamente en un input
    * @param event 
    */

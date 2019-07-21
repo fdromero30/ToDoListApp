@@ -31,6 +31,7 @@ export class ConfirmationModalComponent implements OnInit, OnChanges {
   }
 
   /**
+   * @author fromero
    * METODO DE INVOCACION ABRIR MODAL
    * @param content 
    */
@@ -39,6 +40,7 @@ export class ConfirmationModalComponent implements OnInit, OnChanges {
   }
 
   /**
+   * @author fromero
    * METODO DE CONFIRMACION DE OPCIONES
    */
   aceptar() {
@@ -47,6 +49,7 @@ export class ConfirmationModalComponent implements OnInit, OnChanges {
   }
 
   /**
+   * @author fromero
    * METODO DE CANCELACION DE OPCIONES
    */
   cancelar() {

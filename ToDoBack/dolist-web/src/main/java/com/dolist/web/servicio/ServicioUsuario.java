@@ -108,15 +108,14 @@ public class ServicioUsuario {
 		return response;
 	}
 
+
 	/**
-	 * Elimina el usuario con el identificador que se pasa como parámetro.
 	 * 
-	 * @param tipoDocumento
-	 * @param numeroDocumento
+	 * @param usuarioPK
 	 * @return
 	 */
 	@DELETE
-	public Response eliminar(UsuarioPK usuarioPK) {
+	public Response eliminar(@QueryParam("usuarioPK") UsuarioPK usuarioPK) {
 
 		Response response = null;
 		try {
