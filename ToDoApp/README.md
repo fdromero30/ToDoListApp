@@ -4,7 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Una vez clonado o descargado el repositorio, ejecute 'npm i' para poder instalar las dependencias necesarias del proyecto angular.
+
+Luego ejecute  `ng serve` para correr el servidor en modo developer. Vaya al navegador a `http://localhost:4200/`.
+
+La aplicacion iniciara automaticamente, http://localhost:4200/#/main/crud-usuarios para ir a la ruta espec'ifica.
+
 
 ## Code scaffolding
 
