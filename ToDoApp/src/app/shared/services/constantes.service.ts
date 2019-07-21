@@ -10,26 +10,8 @@ export class ConstantesService {
   public static temaAzul = 'yeti';
   public static temaNegro = 'dark-white';
   public static temaGris = 'gris-blanco';
-
-
   public static estados = ['ACTIVO', 'INACTIVO'];
   public static tipoDocumentos = ['CÉDULA', 'PASAPORTE', 'TARJETA DE IDENTIDAD'];
-
-
-
-  /* CONSTANTES */
-
-  public static HORAS_DIA = ['01:00 am', '02:00 am', '03:00 am', '04:00 am', '05:00 am',
-    '06:00 am', '07:00 am', '08:00 am', '09:00 am', '10:00 am',
-    '11:00 am', '12:00 pm', '01:00 pm', '02:00 pm', '03:00 pm', '04:00 pm', '05:00 pm',
-    '06:00 pm', '07:00 pm', '08:00 pm', '09:00 pm', '10:00 pm',
-    '11:00 pm', '12:00 am'
-  ];
-
-  public static MESES =
-    new Array('ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE');
-  public static DIAS_SEMANA = new Array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
-
 
 
   // Constantes Servicios SIA3
@@ -51,7 +33,11 @@ export class ConstantesService {
   public static NUM_DOC_SESSSION = 'numDocumento';
   public static SEDE_SESSSION = 'sedeSession'
 
-
-
-
+        
+  
+  
+  // let user = new UsuarioModel('USUARIO PRUEBA', 'ACTIVO', new UsuarioPkModel('CEDULA', '10239267890'));
+  // let user2 = new UsuarioModel('USUARIO PRUEBA 2', 'ACTIVO', new UsuarioPkModel('CEDULA', '10229383763'));
+  // let user3 = new UsuarioModel('USUARIO PRUEBA 3', 'ACTIVO', new UsuarioPkModel('PASAPORTE', '1023789065'));
+  //   this.usuarios.push(user, user2, user3);
 }

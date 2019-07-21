@@ -34,7 +34,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="custom-body-table">
+                    <tbody class="custom-body-table" *ngIf="usuarios.length != 0">
                         <tr *ngFor="let usuario of usuarios" style="font-size: 0.6rem;">
                             <td>
                                 {{usuario.nombre}}
@@ -56,6 +56,9 @@
                                 </confirmation-app-modal>
                             </td>
                         </tr>
+                    </tbody>
+                    <tbody class="custom-body-table" *ngIf="usuarios.length == 0">
+                        <p>No existen registros disponibles. </p>
                     </tbody>
                 </table>
             </div>

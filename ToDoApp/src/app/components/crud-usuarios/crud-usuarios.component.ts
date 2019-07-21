@@ -31,11 +31,7 @@ export class CrudUsuariosComponent implements OnInit, OnDestroy {
         this.modalOptions = new ConfirmationModalOptions(
             'Confirmacion Eliminación', 'Esta seguro de Eliminar el Usuario?', 'SI', 'NO', 'fas fa-user-minus', false, null, 'Eliminar', false, 'btn-danger col-lg-5 col-md-12  col-sm-12 col-xs-12');
         this.usuarios = [];
-        let user = new UsuarioModel('USUARIO PRUEBA', 'ACTIVO', new UsuarioPkModel('CEDULA', '10239267890'));
-        let user2 = new UsuarioModel('USUARIO PRUEBA 2', 'ACTIVO', new UsuarioPkModel('CEDULA', '10229383763'));
-        let user3 = new UsuarioModel('USUARIO PRUEBA 3', 'ACTIVO', new UsuarioPkModel('PASAPORTE', '1023789065'));
 
-        this.usuarios.push(user, user2, user3);
     }
 
     ngOnInit() {
