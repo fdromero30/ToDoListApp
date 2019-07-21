@@ -36,7 +36,7 @@ export class CrudUsuariosDetalleComponent implements OnInit {
      */
 
     close() {
-        this.activeModal.close({ usuario: this.Usuario });
+        this.activeModal.close({ usuario: this.Usuario, edicion: this.editar });
     }
 
     /**

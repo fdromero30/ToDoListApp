@@ -45,11 +45,8 @@ export class GlobalService {
   }
 
   private createSecurityOptions(headers: Headers, envPass?: boolean) {
-    // if(envPass && credenciales){
-    //   headers.append('Authorization', 'Basic ' + credenciales);
-    // }else  {
     headers.append('Authorization', 'Bearer ' + sessionStorage.getItem(ConstantesService.TOKEN_HEADER));
-    // }
+
   }
 
   public postGenerico(url: string, cuerpo?: any): any {
@@ -58,9 +55,6 @@ export class GlobalService {
 
     const options = new Object({ headers });
     return this.http.post(url, cuerpo, options).pipe(
-      // timeoutWith(10000,
-      //     throwError('Tiempo Máximo Excedido')
-      // ),
       map(this.extractData),
       catchError(this.handleError)
     );
@@ -72,9 +66,6 @@ export class GlobalService {
 
     const options = new Object({ headers });
     return this.http.get(url, options).pipe(
-      // timeoutWith(10000,
-      //     throwError('Tiempo Máximo Excedido')
-      // ),
       map(this.extractData),
       catchError(this.handleError)
     );
@@ -87,9 +78,6 @@ export class GlobalService {
 
     const options = new Object({ headers });
     return this.http.put(url, body, options).pipe(
-      // timeoutWith(10000,
-      //     throwError('Tiempo Máximo Excedido')
-      // ),
       map(this.extractData),
       catchError(this.handleError)
     );

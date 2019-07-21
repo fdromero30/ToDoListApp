@@ -48,9 +48,60 @@ export class CrudUsuariosComponent implements OnInit {
             modalRef.componentInstance.Usuario = usuarioEdicion;
         }
         modalRef.result.then((result) => {
+
+            if (result.editar) {
+                this.editarUsuario(result.usuario);
+            } else {
+                this.guardarUsuario(result.usuario);
+            }
             console.log('resultado del modal', result)
+
         })
     }
+
+
+    /**
+     * 
+     * @param usuario 
+     */
+    editarUsuario(usuario: UsuarioModel) {
+
+        this.spinner.show();
+        const serviceProvider = 'actualizarUsuario';
+
+        const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
+
+        this.global.postGenerico(url, usuario).subscribe(
+            data => {
+
+                this.spinner.hide();
+            }, err => {
+                this.cathcException('No es posible Actualizar el usuario en este momento');
+            }
+        )
+    }
+
+    /**
+     * 
+     * @param usuario 
+     */
+    guardarUsuario(usuario: UsuarioModel) {
+
+        this.spinner.show();
+        const serviceProvider = 'guardarNuevoUsuario';
+
+        const url = this.urlService.getUrl(new UrlControl(serviceProvider, null, null), this.urlService.hostAPI);
+
+        this.global.postGenerico(url, usuario).subscribe(
+            data => {
+
+                this.spinner.hide();
+            }, err => {
+                this.cathcException('No es posible Crear el usuario en este momento');
+            }
+        )
+    }
+
 
     /**
      * Obtiene la lista principal de usuarios

@@ -4,9 +4,7 @@ import { AppSettings } from '../app.settings';
 
 @Injectable()
 export class UrlService {
-  // public hostSIA3: string = AppSettings.API_ENDPOINT; // se obtiene el ENDPOINT BASE
   public hostAPI: string = AppSettings.APIREST_ENDPOINT;
-  // public hostAPI1: string = AppSettings.APIREST_ENDPOINT1;
 
   getUrl(control: UrlControl, host: string): string {
     const provider = this.getProvider(control.serviceProvider);
