@@ -24,7 +24,9 @@
                     Tipo Documento
                 </label>
                 <select class="form-control" id="selectTipoDocUsuario">
-                    <option *ngFor="let tipo of tipos"></option>
+                    <option *ngFor="let tipo of tipos">
+                        {{tipo}}
+                    </option>
                 </select>
             </div>
             <div class="col-12">

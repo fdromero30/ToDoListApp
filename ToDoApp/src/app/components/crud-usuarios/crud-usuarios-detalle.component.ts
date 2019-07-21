@@ -23,8 +23,8 @@ export class CrudUsuariosDetalleComponent implements OnInit {
 
     constructor(private activeModal: NgbActiveModal) {
 
-        this.estados = ConstantesService.estados;
-        this.tipos = ConstantesService.tipoDocumentos;
+        this.estados = ConstantesService.estados; // se consultan estos dominiso de constantes, aunque en realidad deberian venir de Base de datos
+        this.tipos = ConstantesService.tipoDocumentos; // se dejan quemados en front para facilidad del ejercicio
 
         this.modalOptions = new ConfirmationModalOptions(
             'Confirmación', 'Está seguro de guardar los cambios?', 'SI', 'NO', 'fas fa-address-card'
