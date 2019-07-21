@@ -39,7 +39,7 @@ export class CrudUsuariosComponent implements OnInit {
     }
 
     /**
-     * 
+     * Lanza el modal de edición o creación y espera la respuesta del modal
      * @param usuarioEdicion 
      */
     verModal(usuarioEdicion?: UsuarioModel) {
@@ -49,19 +49,22 @@ export class CrudUsuariosComponent implements OnInit {
         }
         modalRef.result.then((result) => {
 
-            if (result.editar) {
-                this.editarUsuario(result.usuario);
-            } else {
-                this.guardarUsuario(result.usuario);
+            if (result) {
+                if (result.editar) {
+                    this.editarUsuario(result.usuario);
+                } else {
+                    this.guardarUsuario(result.usuario);
+                }
+                console.log('resultado del modal', result)
+
             }
-            console.log('resultado del modal', result)
 
         })
     }
 
 
     /**
-     * 
+     * actualiza un usuario existente
      * @param usuario 
      */
     editarUsuario(usuario: UsuarioModel) {
@@ -82,7 +85,7 @@ export class CrudUsuariosComponent implements OnInit {
     }
 
     /**
-     * 
+     * guarada un nuevo Usuario
      * @param usuario 
      */
     guardarUsuario(usuario: UsuarioModel) {
@@ -148,6 +151,10 @@ export class CrudUsuariosComponent implements OnInit {
 
     }
 
+    /**
+     * 
+     * @param error 
+     */
 
     cathcException(error) {
         this.alertService.generateAlertError(error, 'Error');

@@ -35,8 +35,16 @@ export class CrudUsuariosDetalleComponent implements OnInit {
      * Metodo que cierra el modal y retorna el usuario modificado o creado para guardar
      */
 
-    close() {
-        this.activeModal.close({ usuario: this.Usuario, edicion: this.editar });
+    close(event?) {
+
+        if (event != 'cerrar') {
+            this.activeModal.close({ usuario: this.Usuario, edicion: this.editar });
+        } else {
+
+            this.activeModal.close();
+
+        }
+
     }
 
     /**
