@@ -1,0 +1,86 @@
+<nav id="sidebar" class="menuContainer">
+  <div class="sidebar-header">
+    <h1 class="text-primary ligthTittle">Menu</h1>
+  </div>
+  <div class="menu-lista" id="menu-list">
+    <ul class="components">
+      <li>
+        <a [routerLink]="['/main/crud-usuarios']">CRUD Usuarios</a>
+      </li>
+    </ul>
+  </div>
+  <div class="menu-footer">
+    <div *ngIf="accesibilidad" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contenedorAccesibilidad nopadding">
+      <hr>
+      <div class="grid controles-accesibilidad">
+        <div class="row" style="margin:0">
+          <button (click)="setAccesibilidad(false)" class="btn btn-xs btn-primary button-rounded right"
+            style="font-size: 0.6rem !important;">
+            Cerrar
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="cambiosContraste">
+          <fieldset>
+            <legend hidden>
+              CONTROLES DE ACCESIBILIDAD
+            </legend>
+            <div class="col-12 contenedorContraste">
+              <h3 class="text-primary">
+                <strong>
+                  Cambios de contraste
+                </strong>
+              </h3>
+            </div>
+            <div class="col-12 contendedorContrastesSwhitch">
+              <label class="text-secondary" for="inContraste1">
+                Fondo Negro Texto Blanco
+              </label>
+              <div class="pull-right">
+                <input id="inContraste1" name="someSwitchOption001" #blackTheme type="checkbox"
+                  (change)="setTheme('dark-white', $event)" [(ngModel)]="checkBlack" />
+              </div>
+              <label class="text-secondary" for="inContraste2">
+                Fondo Morado Texto Rosado
+              </label>
+              <div class="pull-right">
+                <input id="inContraste2" name="someSwitchOption002" #pinkTheme type="checkbox"
+                  (change)="setTheme('rosa-fucsia', $event)" [(ngModel)]="checkPink" />
+              </div>
+
+              <label class="text-secondary" for="inContraste3">
+                Fondo Gris Texto Blanco
+              </label>
+              <div class="pull-right">
+                <input id="inContraste3" name="someSwitchOption002" #grayTheme type="checkbox"
+                  (change)="setTheme('gris-blanco', $event)" [(ngModel)]="checkGray" />
+              </div>
+            </div>
+          </fieldset>
+          <div class="col-12">
+            <hr>
+          </div>
+          <div class="col-12 text-center">
+            <button class="btn btn-xs btn-primary button-rounded" (click)="restablecerAjustes('yeti')"
+              style="font-size: 0.6rem !important;">
+              <i class="fa fa-undo" aria-hidden="true"></i>
+              Restablecer Ajustes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!accesibilidad" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 resumenAccesibilidad">
+      <div class="contenedorBotonClosedAccess">
+        <div class="col-12">
+          <button class="btn btn-xs btn-outline-primary button-rounded button-outline text-center col-12"
+            (click)="setAccesibilidad(true)" style="font-size: 0.6rem !important;">
+            <i class="fa fa-child" aria-hidden="true"></i>
+            Componentes de Accesibilidad
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,28 +1,50 @@
+import { AuthGuard } from './shared/guards/authGuard/auth.guard';
+import { UrlService } from './shared/services/url.service';
+import { MainFrameModule } from './components/mainframe/mainframe.module';
+import { GlobalService } from './shared/global.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+// Components
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { NgxSpinnerModule } from "ngx-spinner";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { MainFrameModule } from './components/main-frame/main-frame.module';
-import { RouterModule } from '@angular/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CrudUsuariosModule } from './components/crud-usuarios/crud-usuarios.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent
+  ],
 
-  ],
   imports: [
+    CrudUsuariosModule,
+    NgxSpinnerModule,
     MainFrameModule,
-    BrowserModule,
     SharedModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NoopAnimationsModule,
     NgbModule,
-    RouterModule,
-    // NgxSpinnerModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
+  providers: [GlobalService, UrlService, AuthGuard],
+  bootstrap: [AppComponent],
+  entryComponents: []
 })
-export class AppModule { }
+export class AppModule {
+
+}

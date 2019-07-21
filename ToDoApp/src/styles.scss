@@ -1,11 +1,1373 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./styles/toastr";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/code";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
-
-body{
-height: 100%;
-width: 100%
+html,
+body {
+  height: 100%;
+  overflow-y: scroll;
 }
-.maxSize{
-    height: 100%;
-    width: 100%;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+input[type="checkbox"] {
+  height: 15px !important;
+  width: 15px !important;
+  opacity: 1 !important;
+  margin-top: 1px !important;
+}
+#toast-container > div {
+  opacity: 1;
+}
+
+@function color($key) {
+  @return map-get($theme-colors, $key);
+}
+
+// Set de Colores Para Cada Tema
+$themes: (
+  yeti: (
+    name: "yeti",
+    primary: #074ad2,
+    secondary: #545455,
+    navColor: #3772ff,
+    ligth: white,
+    fondo: #f5f5f5,
+    btnHover: #007bff,
+    fondoFormulario: white,
+    liFocus: #efefef,
+    borderUsuario: #dadada,
+    calendario: #5684e0
+  ),
+  dark-white: (
+    name: "dark-white",
+    primary: black,
+    secondary: #7a8288,
+    fondoFormulario: white,
+    navColor: #333,
+    ligth: white,
+    fondo: black,
+    liFocus: #7a8288,
+    calendario: black,
+    tituloPagina: white
+  ),
+  rosa-fucsia: (
+    name: "rosa-fucsia",
+    primary: #fe007d,
+    secondary: #7a8288,
+    fondoFormulario: white,
+    navColor: #b566a2,
+    ligth: white,
+    fondo: #280050,
+    liFocus: #280050,
+    calendario: #fe007d,
+    tituloPagina: #e0a5ca
+  ),
+  gris-blanco: (
+    name: "gris-blanco",
+    primary: #333232,
+    secondary: #515151,
+    fondoFormulario: white,
+    navColor: #333232,
+    ligth: white,
+    fondo: #515151,
+    liFocus: #7a8288,
+    calendario: black,
+    tituloPagina: #f5f5f5
+  )
+);
+
+.myCustomModalClass .modal-dialog {
+  max-width: 420px;
+}
+
+.modal-content {
+  border-radius: 0 !important;
+}
+.modal-header {
+  border-bottom: 0 !important;
+}
+.custom-range {
+  width: 90% !important;
+}
+
+// Contenedor Para titulo y Subtitulo de Cada Página
+.contenedorTituloPagina {
+  margin-left: 0%;
+  padding-top: 2%;
+  .tituloPagina {
+    font-size: 130% !important;
+  }
+  .subtituloPagina {
+    font-size: 70% !important;
+  }
+}
+.contenedorFormulario {
+  margin-top: 1%;
+}
+.tituloFormulario {
+  font-size: 90%;
+}
+.hiddenLabel {
+  visibility: hidden !important;
+}
+.button-rounded {
+  border-radius: 27px !important;
+  border: 0px !important;
+  font-size: 80% !important;
+  // height: 1.3rem;
+  height: auto;
+  padding-top: 0px !important;
+}
+
+// Estilos Modal Aplicación
+// *****************************
+.modal {
+  opacity: 1 !important;
+  z-index: 10002 !important;
+}
+.modal-backdrop {
+  opacity: 0.5 !important;
+  z-index: 10002 !important;
+}
+.modal-content {
+  // top: 85px !important;
+  z-index: 10002 !important;
+}
+// ****************************
+.form-control {
+  font-size: 80% !important;
+}
+.btn {
+  font-size: 80% !important;
+}
+// Contenedor Páginas Contenido
+// ***********************************************
+.contenedorPagina {
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  height: 90%;
+  .container {
+    height: 100% !important;
+  }
+}
+@media screen and (max-width: 720px) {
+  .contenedorPagina {
+    max-height: 90%;
+  }
+
+.card-columns {
+    -webkit-column-count: 3;
+    column-count: 1 !important;
+    -webkit-column-gap: 1.25rem;
+    column-gap: 1.25rem;
+    orphans: 1;
+    widows: 1;
+
+}
+}
+@media screen and (min-width: 720px) and (max-width:840px) {
+  .contenedorPagina {
+    max-height: 90%;
+  }
+
+.card-columns {
+    -webkit-column-count: 3;
+    column-count: 2 !important;
+    -webkit-column-gap: 1.25rem;
+    column-gap: 1.25rem;
+    orphans: 1;
+    widows: 1;
+
+}
+}
+/*
+ Implementaciòn de Temas
+*/
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+* {
+  @include themify($themes) {
+    .contenedorFondoLogoRol {
+      background-color: themed("primary") !important;
+    }
+    // ****************************************
+    // TEMA FONDO NEGRO LETRA BLANCA
+    // ----------------------------------------
+    @if themed("name") == "dark-white" {
+      .tituloApp{
+        color: themed("ligth");
+      }
+      .sombreado-tabla {
+        background-color: themed("navColor");
+        color: themed("ligth");
+      }
+
+      .sombreado-tabla > td > button {
+        border-color: white;
+      }
+
+      .footerApp {
+        background-color: themed("fondo");
+        color: themed("ligth");
+        border-top: 1px themed("ligth") solid;
+      }
+      .menusuario {
+        button:focus {
+          border: 1px solid themed("ligth");
+        }
+      }
+
+      .filtro-ayuda .btn-rounded {
+        color: themed("ligth");
+        background-color: themed("primary");
+      }
+      .contenedor-ayuda {
+        background-color: themed("secondary");
+      }
+      .menusuario .username {
+        color: themed("ligth") !important;
+      }
+      .subtituloPagina {
+        color: themed("tituloPagina") !important;
+      }
+      .bg-primary {
+        // estilo de fondo del datepicker
+        background-color: themed("secondary");
+      }
+      .btn-link {
+        // estilo de fondo de las flechas de navegación del datepicker
+        color: themed("primary") !important;
+      }
+
+      .menu-footer {
+        background-color: themed("ligth");
+      }
+      .btn-outline-primary:hover {
+        background-color: themed("secondary");
+      }
+
+      .text-primary-filtro {
+        color: themed("ligth");
+      }
+      .btn-buscarfiltro {
+        background-color: themed("secondary");
+        color: themed("ligth");
+      }
+      .btn-volver {
+        color: themed("ligth") !important;
+        border: 2px solid themed("ligth") !important;
+      }
+
+      .btn-volver:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem #b3d7ff;
+      }
+
+      .tituloPagina {
+        color: themed("ligth");
+      }
+      .btnTabActivos {
+        background-color: themed("ligth");
+        border-bottom: #54545540 2px solid;
+      }
+      .btnTabActivos.selected {
+        border-bottom: themed("primary") 2px solid;
+      }
+
+      .inputError {
+        border-color: rgba(255, 0, 0, 0.479) !important;
+      }
+      .inputError:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.479) !important;
+      }
+
+      .contenedorDropdown {
+        background-color: themed("ligth");
+        box-shadow: -1px 5px 15px -5px #adb5b0;
+        .fila:hover {
+          background-color: themed("fondo");
+          color: themed("ligth");
+        }
+      }
+      .tarjetaInformacionVisitante {
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        background: themed("ligth") !important;
+        .cabeceraFicha {
+          background: themed("primary") !important;
+          h3 {
+            color: themed("ligth") !important;
+          }
+        }
+      }
+      .calendarHeader {
+        background-color: themed("calendario");
+        color: themed("ligth");
+      }
+      .listaElements:focus {
+        background-color: themed("fondo");
+        border: 0;
+      }
+      .button-alternative-contrast {
+        background-color: themed("primary");
+        color: themed("ligth") !important;
+      }
+
+      // COLORES MENÚ TEMA AXUL Y BLANCO
+      .menuContainer {
+        .components {
+          padding: 0;
+          margin-top: 1%;
+          hr {
+            width: 75%;
+            // background-color: themed("navColor") !important;
+          }
+        }
+        .fa-chevron-down {
+          padding-right: 10%;
+          margin-top: 1%;
+        }
+        menu-list {
+          border-bottom: 1px solid themed("primary");
+        }
+        ul {
+          li {
+            border-left: 8px solid themed("ligth");
+            i {
+              color: themed("secondary");
+            }
+            a {
+              color: themed("secondary");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li:hover.menuClass,
+          li.selected.menuClass {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("primary");
+            a,
+            i {
+              font-weight: 600;
+              text-decoration: none;
+              color: themed("primary");
+              font-size: 0.9rem;
+            }
+            ul {
+              background-color: themed("ligth");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li.selected.submenu {
+            border-left: 8px solid themed("ligth");
+            a,
+            i {
+              color: themed("primary") !important;
+            }
+          }
+          li:hover.submenu {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("liFocus");
+          }
+        }
+      }
+
+      .navbarSide {
+        background-color: themed("navColor") !important;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        z-index: 1;
+      }
+
+      //Congiguración Cuerpo
+
+      .contenedorBody {
+        background-color: themed("fondo") !important;
+      }
+      .contenedorFormulario {
+        background: themed("fondoFormulario") !important;
+        border-radius: 10px;
+        padding: 6%;
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        .columna {
+          padding: 3% !important;
+        }
+      }
+      // h3 {
+      //   color: themed("primary") !important;
+      // }
+      .text-primary {
+        color: themed("primary") !important;
+      }
+      .text-secondary {
+        color: themed("secondary") !important;
+      }
+      .btn-primary {
+        background-color: themed("primary") !important;
+      }
+      .btn-primary:hover {
+        background-color: themed("btnHover") !important;
+      }
+      .btn-outline-primary {
+        color: themed("primary") !important;
+      }
+      .btn-outline-primary:hover {
+        background-color: themed("btnHover");
+      }
+      .btn-secondary {
+        background-color: themed("primary");
+        label {
+          font-weight: 100;
+          color: white;
+        }
+      }
+      .btn-secondary:hover {
+        background-color: themed("btnHover");
+        label {
+          color: white;
+        }
+      }
+      .form-control:selected {
+        color: black;
+      }
+      input:focus {
+        border: 0px;
+      }
+
+      .obtener-ayuda {
+        border-bottom: themed("borderUsuario");
+      }
+    }
+    //-----------------------------------------
+    //*****************************************
+
+    // ****************************************
+    //  TEMA FONDO BLANCO TEXTO AZUL
+    // ----------------------------------------
+    @if themed("name") == "yeti" {
+      .tituloApp{
+        color: themed("ligth");
+      }
+      .sombreado-tabla {
+        background-color: themed("navColor");
+        color: themed("ligth");
+        border-color: themed("ligth");
+      }
+
+      .sombreado-tabla > td > button {
+        border-color: white;
+      }
+
+      .footerApp {
+        background-color: themed("fondo");
+        color: #9fa4a9;
+        border-top: 1px themed("navColor") solid;
+      }
+      .menusuario {
+        button:focus {
+          border: 1px solid themed("ligth");
+        }
+      }
+      .filtro-ayuda .btn-rounded {
+        color: themed("ligth");
+        background-color: themed("primary");
+      }
+      .contenedor-ayuda {
+        background-color: themed("fondo");
+      }
+      .menusuario .username {
+        color: themed("ligth") !important;
+      }
+      .bg-primary {
+        // estilo de fondo del datepicker
+        background-color: themed("primary");
+      }
+      .btn-link {
+        // estilo de fondo de las flechas de navegación del datepicker
+        color: themed("primary") !important;
+      }
+      .menu-footer {
+        background-color: themed("ligth");
+      }
+      .text-primary-filtro {
+        color: themed("primary");
+      }
+      .tituloPagina {
+        color: themed("primary");
+      }
+
+      .btn-buscarfiltro {
+        background-color: themed("primary");
+        color: themed("ligth");
+      }
+      .btn-volver {
+        color: themed("primary") !important;
+        border: 2px solid themed("primary") !important;
+      }
+      .btn-volver:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem #70acef;
+      }
+      .btnTabActivos {
+        background-color: themed("ligth");
+        border-bottom: #54545540 2px solid;
+      }
+      .btnTabActivos.selected {
+        border-bottom: themed("primary") 2px solid;
+      }
+
+      .inputError {
+        border-color: rgba(255, 0, 0, 0.479) !important;
+      }
+      .inputError:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.479) !important;
+      }
+
+      .contenedorDropdown {
+        background-color: themed("ligth");
+        box-shadow: -1px 5px 15px -5px #adb5b0;
+        .fila:hover {
+          background-color: themed("fondo");
+        }
+      }
+      .tarjetaInformacionVisitante {
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        background: themed("ligth") !important;
+        .cabeceraFicha {
+          background: themed("primary") !important;
+          h3 {
+            color: themed("ligth") !important;
+          }
+        }
+      }
+      .calendarHeader {
+        background-color: themed("calendario");
+        color: themed("ligth");
+      }
+      .listaElements:focus {
+        background-color: themed("fondo");
+        border: 0;
+      }
+      .button-alternative-contrast {
+        background-color: themed("primary");
+        color: themed("ligth") !important;
+      }
+
+      // COLORES MENÚ TEMA AXUL Y BLANCO
+      .menuContainer {
+        border-right: 1px solid #e9ecefc4;
+        .components {
+          padding: 0;
+          margin-top: 1%;
+          hr {
+            width: 75%;
+            // background-color: themed("navColor") !important;
+          }
+        }
+        .fa-chevron-down {
+          padding-right: 10%;
+          margin-top: 1%;
+        }
+        menu-list {
+          border-bottom: 1px solid themed("primary");
+        }
+        ul {
+          li {
+            border-left: 8px solid themed("ligth");
+            i {
+              color: themed("secondary");
+            }
+            a {
+              color: themed("secondary");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li:hover.menuClass,
+          li.selected.menuClass {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("primary");
+            a,
+            i {
+              font-weight: 600;
+              text-decoration: none;
+              color: themed("primary");
+              font-size: 0.9rem;
+            }
+            ul {
+              background-color: themed("ligth");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li.selected.submenu {
+            border-left: 8px solid themed("ligth");
+            a,
+            i {
+              color: themed("primary") !important;
+            }
+          }
+          li:hover.submenu {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("liFocus");
+          }
+        }
+      }
+
+      .navbarSide {
+        background-color: themed("navColor") !important;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        z-index: 1;
+      }
+
+      //Congiguración Cuerpo
+
+      .contenedorBody {
+        background-color: themed("fondo") !important;
+      }
+      .contenedorFormulario {
+        background: themed("fondoFormulario") !important;
+        border-radius: 10px;
+        padding: 6%;
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        .columna {
+          padding: 3% !important;
+        }
+      }
+      // h3 {
+      //   color: themed("primary") !important;
+      // }
+      .text-primary {
+        color: themed("primary") !important;
+      }
+      .text-secondary {
+        color: themed("secondary") !important;
+      }
+      .btn-primary {
+        background-color: themed("primary") !important;
+      }
+      .btn-primary:hover {
+        background-color: themed("btnHover") !important;
+      }
+      .btn-outline-primary {
+        color: themed("primary") !important;
+      }
+      .btn-outline-primary:hover {
+        background-color: themed("btnHover");
+      }
+      .btn-secondary {
+        background-color: themed("primary");
+        label {
+          font-weight: 100;
+          color: white;
+        }
+      }
+      .btn-secondary:hover {
+        background-color: themed("btnHover");
+        label {
+          color: white;
+        }
+      }
+      .form-control:selected {
+        color: black;
+      }
+      input:focus {
+        border: 0px;
+      }
+
+      .obtener-ayuda {
+        border-bottom: themed("borderUsuario");
+      }
+    }
+    //******************************************
+    //-----------------------------------------
+    // TEMA FONDO MORADO TEXTO FUCSIA
+    //
+    @if themed("name") == "rosa-fucsia" {
+      .tituloApp{
+        color: themed("ligth");
+      }
+      .sombreado-tabla {
+        background-color: themed("navColor");
+        color: themed("ligth");
+        border-color: themed("ligth");
+      }
+      .sombreado-tabla > td > button {
+        border-color: white;
+      }
+      .btn-danger {
+        background-color: themed("fondo");
+      }
+      .footerApp {
+        background-color: themed("fondo");
+        color: themed("tituloPagina");
+        border-top: 1px themed("ligth") solid;
+      }
+      .menusuario {
+        button:focus {
+          border: 1px solid themed("ligth");
+        }
+      }
+      .filtro-ayuda .btn-rounded {
+        color: themed("ligth");
+        background-color: themed("primary");
+      }
+      .contenedor-ayuda {
+        background-color: themed("ligth");
+      }
+      .menusuario .username {
+        color: themed("ligth") !important;
+      }
+      .bg-primary {
+        // estilo de fondo de las fechas seleccionadas en el  datepicker
+        background-color: themed("primary") !important;
+      }
+      .btn-link {
+        // estilo de fondo de las flechas de navegación del datepicker
+        color: themed("primary") !important;
+      }
+      .btn-light:hover {
+        // estilo de la fecha seleccionada en el datepiker
+        background-color: themed("primary") !important;
+        color: themed("ligth");
+      }
+
+      .menu-footer {
+        background-color: themed("fondo");
+      }
+      .text-primary-filtro {
+        color: themed("tituloPagina");
+      }
+      .tituloPagina {
+        color: themed("tituloPagina");
+      }
+
+      .subtituloPagina {
+        color: themed("tituloPagina") !important;
+      }
+      .btn-buscarfiltro {
+        background-color: themed("primary");
+        color: themed("ligth");
+      }
+      .btn-volver {
+        color: themed("ligth") !important;
+        border: 2px themed("ligth") solid !important;
+      }
+      .btnTabActivos {
+        background-color: themed("ligth");
+        border-bottom: #54545540 2px solid;
+      }
+      .btnTabActivos.selected {
+        border-bottom: themed("primary") 2px solid;
+      }
+
+      .inputError {
+        border-color: rgba(255, 0, 0, 0.479) !important;
+      }
+      .inputError:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.479) !important;
+      }
+
+      .contenedorDropdown {
+        background-color: themed("ligth");
+        box-shadow: -1px 5px 15px -5px #adb5b0;
+        .fila:hover {
+          background-color: themed("fondo");
+        }
+      }
+      .tarjetaInformacionVisitante {
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        background: themed("ligth") !important;
+        .cabeceraFicha {
+          background: themed("primary") !important;
+          h3 {
+            color: themed("ligth") !important;
+          }
+        }
+      }
+      .calendarHeader {
+        background-color: themed("calendario");
+        color: themed("ligth");
+      }
+      .listaElements:focus {
+        background-color: themed("fondo");
+        border: 0;
+      }
+      .button-alternative-contrast {
+        background-color: themed("primary");
+        color: themed("ligth") !important;
+      }
+
+      // COLORES MENÚ TEMA ROSA Y FUCSIA
+      .menuContainer {
+        .components {
+          padding: 0;
+          margin-top: 1%;
+          hr {
+            width: 75%;
+            // background-color: themed("navColor") !important;
+          }
+        }
+        .fa-chevron-down {
+          padding-right: 10%;
+          margin-top: 1%;
+        }
+        menu-list {
+          border-bottom: 1px solid themed("primary");
+        }
+        ul {
+          li {
+            border-left: 8px solid themed("ligth");
+            i {
+              color: themed("secondary");
+            }
+            a {
+              color: themed("secondary");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li:hover.menuClass,
+          li.selected.menuClass {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("primary");
+            a,
+            i {
+              font-weight: 600;
+              text-decoration: none;
+              color: themed("primary");
+              font-size: 0.9rem;
+            }
+            ul {
+              background-color: themed("ligth");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li.selected.submenu {
+            border-left: 8px solid themed("ligth");
+            a,
+            i {
+              color: themed("primary") !important;
+            }
+          }
+          li:hover.submenu {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("liFocus");
+          }
+        }
+      }
+
+      .navbarSide {
+        background-color: themed("navColor") !important;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        z-index: 1;
+      }
+
+      //Congiguración Cuerpo
+
+      .contenedorBody {
+        background-color: themed("fondo") !important;
+      }
+      .contenedorFormulario {
+        background: themed("fondoFormulario") !important;
+        border-radius: 10px;
+        padding: 6%;
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        .columna {
+          padding: 3% !important;
+        }
+      }
+      // h3 {
+      //   color: themed("primary") !important;
+      // }
+      .text-primary {
+        color: themed("primary") !important;
+      }
+      .text-secondary {
+        color: themed("tituloPagina") !important;
+      }
+      .btn-primary {
+        background-color: themed("primary") !important;
+      }
+      .btn-primary:hover {
+        background-color: themed("btnHover") !important;
+      }
+      .btn-outline-primary {
+        color: themed("primary") !important;
+      }
+      .btn-outline-primary:hover {
+        background-color: themed("btnHover");
+      }
+      .btn-secondary {
+        background-color: themed("primary");
+        label {
+          font-weight: 100;
+          color: white;
+        }
+      }
+      .btn-secondary:hover {
+        background-color: themed("btnHover");
+        label {
+          color: white;
+        }
+      }
+      .form-control:selected {
+        color: black;
+      }
+      input:focus {
+        border: 0px;
+      }
+
+      .obtener-ayuda {
+        border-bottom: themed("borderUsuario");
+      }
+    }
+    //******************************************
+    //-----------------------------------------
+
+    @if themed("name") == "gris-blanco" {
+      .tituloApp{
+        color: themed("ligth");
+      }
+      .sombreado-tabla {
+        background-color: themed("navColor");
+        color: themed("ligth");
+        border-color: themed("ligth");
+      }
+      .sombreado-tabla > td > button {
+        border-color: white;
+      }
+      .footerApp {
+        background-color: themed("fondo");
+        color: themed("ligth");
+        border-top: 1px themed("ligth") solid;
+      }
+      .menusuario {
+        button:focus {
+          border: 1px solid themed("ligth");
+        }
+      }
+      .filtro-ayuda .btn-rounded {
+        color: themed("ligth");
+        background-color: themed("primary");
+      }
+      .contenedor-ayuda {
+        background-color: themed("secondary");
+      }
+      .menusuario .username {
+        color: themed("ligth") !important;
+      }
+      .bg-primary {
+        // estilo de fondo del datepicker
+        background-color: themed("primary");
+      }
+      .btn-link {
+        // estilo de fondo de las flechas de navegación del datepicker
+        color: themed("primary") !important;
+      }
+      .menu-footer {
+        background-color: themed("ligth");
+      }
+      .text-primary-filtro {
+        color: themed("ligth");
+      }
+      .tituloPagina {
+        color: themed("tituloPagina");
+      }
+      .subtituloPagina {
+        color: themed("tituloPagina") !important;
+      }
+      .btn-buscarfiltro {
+        background-color: themed("primary");
+        color: themed("ligth");
+      }
+      .btn-volver {
+        color: themed("ligth") !important;
+        border: 2px themed("ligth") solid !important;
+      }
+      .btnTabActivos {
+        background-color: themed("ligth");
+        border-bottom: #54545540 2px solid;
+      }
+      .btnTabActivos.selected {
+        border-bottom: themed("primary") 2px solid;
+      }
+
+      .inputError {
+        border-color: rgba(255, 0, 0, 0.479) !important;
+      }
+      .inputError:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.479) !important;
+      }
+
+      .contenedorDropdown {
+        background-color: themed("ligth");
+        box-shadow: -1px 5px 15px -5px #adb5b0;
+        .fila:hover {
+          background-color: themed("fondo");
+        }
+      }
+      .tarjetaInformacionVisitante {
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        background: themed("ligth") !important;
+        .cabeceraFicha {
+          background: themed("primary") !important;
+          h3 {
+            color: themed("ligth") !important;
+          }
+        }
+      }
+      .calendarHeader {
+        background-color: themed("calendario");
+        color: themed("ligth");
+      }
+      .listaElements:focus {
+        background-color: themed("fondo");
+        border: 0;
+      }
+      .button-alternative-contrast {
+        background-color: themed("primary");
+        color: themed("ligth") !important;
+      }
+
+      // COLORES MENÚ TEMA ROSA Y FUCSIA
+      .menuContainer {
+        .components {
+          padding: 0;
+          margin-top: 1%;
+          hr {
+            width: 75%;
+            // background-color: themed("navColor") !important;
+          }
+        }
+        .fa-chevron-down {
+          padding-right: 10%;
+          margin-top: 1%;
+        }
+        menu-list {
+          border-bottom: 1px solid themed("primary");
+        }
+        ul {
+          li {
+            border-left: 8px solid themed("ligth");
+            i {
+              color: themed("secondary");
+            }
+            a {
+              color: themed("secondary");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li:hover.menuClass,
+          li.selected.menuClass {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("primary");
+            a,
+            i {
+              font-weight: 600;
+              text-decoration: none;
+              color: themed("primary");
+              font-size: 0.9rem;
+            }
+            ul {
+              background-color: themed("ligth");
+            }
+            ul li {
+              background-color: themed("ligth");
+
+              a {
+                color: themed("secondary");
+              }
+              i {
+                color: themed("secondary");
+              }
+            }
+          }
+          li.selected.submenu {
+            border-left: 8px solid themed("ligth");
+            a,
+            i {
+              color: themed("primary") !important;
+            }
+          }
+          li:hover.submenu {
+            background-color: themed("liFocus") !important;
+            border-left: 8px solid themed("liFocus");
+          }
+        }
+      }
+
+      .navbarSide {
+        background-color: themed("navColor") !important;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        z-index: 1;
+      }
+
+      //Congiguración Cuerpo
+
+      .contenedorBody {
+        background-color: themed("fondo") !important;
+      }
+      .contenedorFormulario {
+        background: themed("fondoFormulario") !important;
+        border-radius: 10px;
+        padding: 6%;
+        box-shadow: 0px 0px 7px 0px #e9ecef;
+        .columna {
+          padding: 3% !important;
+        }
+      }
+      // h3 {
+      //   color: themed("primary") !important;
+      // }
+      .text-primary {
+        color: themed("primary") !important;
+      }
+      .text-secondary {
+        color: themed("secondary") !important;
+      }
+      .btn-primary {
+        background-color: themed("primary") !important;
+      }
+      .btn-primary:hover {
+        background-color: themed("btnHover") !important;
+      }
+      .btn-outline-primary {
+        color: themed("primary") !important;
+      }
+      .btn-outline-primary:hover {
+        background-color: themed("btnHover");
+      }
+      .btn-secondary {
+        background-color: themed("secondary");
+        label {
+          font-weight: 100;
+          color: white;
+        }
+      }
+      .btn-secondary:hover {
+        background-color: themed("btnHover");
+        label {
+          color: white;
+        }
+      }
+      .form-control:selected {
+        color: black;
+      }
+      input:focus {
+        border: 0px;
+      }
+
+      .obtener-ayuda {
+        border-bottom: themed("borderUsuario");
+      }
+    }
+
+    // ****************************************
+    // ESTILOS GENERICOS APLICACIÓN
+    //-----------------------------------------
+
+    @media (min-width: 1200px) {
+      // contenedor para pantallas grandes o
+      .container {
+        max-width: 95% !important;
+      }
+    }
+    //  ** // ESTILO DEL CURSOR DEL SLIDER DE TAMAÑO DE LETRA (COLOR)
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background: themed("primary");
+      cursor: pointer;
+    }
+    .nopadding {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .form-control {
+      border-radius: 0px;
+    }
+    .ligthTittle {
+      font-weight: 400 !important;
+    }
+    .strongTittle {
+      font-weight: 600 !important;
+    }
+    .nav-side-menu {
+      background-color: themed("ligth") !important;
+      overflow: auto;
+      font-family: verdana;
+      font-size: 14px;
+      top: 6%;
+      height: 100%;
+      span {
+        margin-left: 10px;
+      }
+      ul,
+      li {
+        margin-left: -5px;
+        padding-left: 0px;
+        height: 35px;
+        list-style: none;
+      }
+    }
+    // MENU ESTRUCTURA, SIN COLOR
+    .menuContainer {
+      .components {
+        padding: 0;
+        // margin-top: 1%;
+        hr {
+          width: 75%;
+        }
+      }
+      .fa-chevron-down {
+        padding-right: 10%;
+        margin-top: 1%;
+      }
+      ul li {
+        padding-top: 2%;
+        padding-bottom: 2%;
+        i {
+          margin-left: 4%;
+        }
+        a {
+          margin-left: 3%;
+        }
+        ul li {
+          margin-left: -3%;
+          a {
+            margin-left: 0%;
+          }
+          i {
+            margin-left: 0.6rem;
+          }
+        }
+      }
+      li:hover,
+      li.selected {
+        padding-bottom: 0;
+        a,
+        i {
+          font-weight: 600;
+          text-decoration: none;
+          font-size: 0.9rem;
+        }
+        li {
+          a,
+          i {
+            font-weight: 100;
+          }
+        }
+      }
+      li:hover.submenu,
+      .selected.submenu {
+        padding-bottom: 1%;
+      }
+    }
+    // FIN ESTRUCTURA MENU, SIN COLOR
+    .strongLabel {
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+    }
+    .noBorder {
+      border: 0;
+    }
+    .btn-volver {
+      border-radius: 20px;
+      font-size: 0.7rem;
+    }
+  }
+  .borde:focus{
+    border: 2px solid;
+  }
 }

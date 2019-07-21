@@ -1,0 +1,263 @@
+// ESTILOS CONTENEDOR MENU ACCESIBILIDAD
+.menu-footer {
+  // position: absolute;
+  width: 100%;
+  height: auto;
+
+  .contenedorAccesibilidad {
+    width: 100%;
+    height: 100%;
+    .right {
+      margin-left: 65%;
+    }
+    .controles-accesibilidad {
+      padding: 5px;
+      width: 100%;
+      height: 100%;
+      .titulo-accesibildiad {
+        margin-bottom: -3%;
+        h2 {
+          margin-left: 15%;
+          font-size: 70%;
+          margin-top: 3px;
+        }
+      }
+    }
+    .contenedorAumentoLetra {
+      margin-top: 3%;
+      margin-left: 6%;
+      h3 {
+        font-size: 60%;
+      }
+      h6 {
+        font-size: 0.7rem;
+      }
+    }
+    .contenedorContraste {
+      margin-top: 0%;
+      h3 {
+        font-size: 60%;
+      }
+    }
+    .contendedorContrastesSwhitch {
+      height: 50px;
+    }
+  }
+  .resumenAccesibilidad {
+    font-size: 90%;
+    width: 100%;
+    height: 100%;
+    .contenedorBotonClosedAccess {
+      position: absolute;
+      bottom: 0;
+      padding-bottom: 12%;
+      .button-outline {
+        border: 1px solid !important;
+      }
+    }
+  }
+}
+fieldset {
+  label {
+    font-size: 65%;
+  }
+}
+
+// // CONFIGURACIÓN RESPONSIVE ALTO DEL MENÚ EN ZOOM PANTALLA
+// // **************************************
+@media screen and(max-height:110px) {
+  .menuContainer {
+    height: 500% !important;
+  }
+}
+@media screen and(max-height:126px) and (min-height: 110px) {
+  .menuContainer {
+    height: 650% !important;
+  }
+}
+@media screen and(max-height:135px) and (min-height: 126px) {
+  .menuContainer {
+    height: 600% !important;
+  }
+}
+@media screen and(max-height:160px) and (min-height: 135px) {
+  .menuContainer {
+    height: 530% !important;
+  }
+}
+@media screen and (max-height: 200px) and (min-height: 160px) {
+  .menuContainer {
+    height: 320% !important;
+  }
+}
+@media screen and (max-height: 250px) and (min-height: 200px) {
+  .menuContainer {
+    height: 460% !important;
+  }
+  .menu-list {
+    height: 55%;
+  }
+}
+@media screen and (max-height: 300px) and (min-height: 250px) {
+  .menuContainer {
+    height: 260% !important;
+  }
+  .menu-list {
+    height: 34%;
+  }
+}
+@media screen and (max-height: 350px) and (min-height: 300px) {
+  .menuContainer {
+    height: 230% !important;
+  }
+  .menu-list {
+    height: 40%;
+  }
+}
+@media screen and (max-height: 400px) and (min-height: 350px) {
+  .menuContainer {
+    height: 200% !important;
+  }
+  .menu-list {
+    height: 32%;
+  }
+}
+@media screen and (max-height: 420px) and (min-height: 400px) {
+  .menuContainer {
+    height: 160% !important;
+  }
+  .menu-list {
+    height: 35%;
+  }
+}
+@media screen and(max-height:450px) and(min-height:420px) {
+  .menuContainer {
+    height: 150% !important;
+  }
+  .menu-list {
+    height: 33%;
+  }
+}
+@media screen and(max-height:520px) and(min-height:450px) {
+  .menuContainer {
+    height: 140% !important;
+  }
+  .menu-list {
+    height: 33%;
+  }
+}
+@media screen and(max-height:550px) and(min-height:520px) {
+  .menuContainer {
+    height: 110% !important;
+    .menu-list {
+      height: 28%;
+    }
+  }
+}
+@media screen and(max-height:560px) and(min-height:550px) {
+  .menuContainer {
+    height: 100% !important;
+    .menu-list {
+      width: 94%;
+      height: 28%;
+    }
+  }
+}
+@media screen and(max-height:600px) and(min-height:560px) {
+  .menuContainer {
+    height: 100% !important;
+    .menu-list {
+      height: 40%;
+    }
+  }
+}
+@media screen and(max-height:620px) and(min-height:600px) {
+  .menuContainer {
+    height: 100% !important;
+    .menu-list {
+      width: 94%;
+      height: 32%;
+    }
+  }
+}
+@media screen and(max-height:650px) and(min-height:620px) {
+  .menuContainer {
+    height: 100% !important;
+    .menu-list {
+      height: 40% !important;
+    }
+  }
+}
+@media screen and(max-height:710px) and(min-height:650px) {
+  .menuContainer {
+    height: 100% !important;
+    .menu-list {
+      width: 94%;
+      height: 43%;
+    }
+  }
+}
+@media screen and (min-height: 710px) and (max-height: 750px) {
+  .menu-list {
+    width: 94%;
+    height: 44%;
+  }
+}
+@media screen and (min-height: 750px) and (max-height: 800px) {
+  .menu-list {
+    height: 55%;
+  }
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+ng-sidebar {
+  height: 100%;
+  width: 100%;
+}
+
+.font-control {
+  margin-left: 0.5em;
+  padding: 0.25em;
+  border: 1px solid;
+  cursor: pointer;
+}
+.tamano {
+  padding-left: 7% !important;
+}
+
+ul {
+  list-style: none;
+  appearance: none;
+  content: none;
+  text-decoration: none;
+}
+
+// Contenedor Menu Estilo
+.menuContainer {
+  width: 100%;
+  height: 96%;
+  position: relative;
+  background-color: #ffffff;
+  .sidebar-header {
+    padding: 5% 0 0 5%;
+    h1 {
+      font-size: 125%;
+    }
+  }
+  .menu-list {
+    width: 100%;
+  }
+  .menu-footer {
+    position: absolute;
+    bottom: 4%;
+    padding-bottom: 1rem;
+  }
+  .menu-lista {
+    height: auto;
+    width: 100%;
+    overflow: auto;
+  }
+}

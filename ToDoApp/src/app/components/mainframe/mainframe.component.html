@@ -1,0 +1,23 @@
+<div class="frame-generico">
+  <div class="navbar navbarSide">
+    <h1 class="tituloApp">TO DO APP</h1>
+    <button type="button" class="btn btn-outline-light btnMenu" (click)="accionMenu()" alt="Boton Menu" tabindex="0">
+      <em class="fa fa-bars"></em>
+      <p hidden>Menu</p>
+    </button>
+  </div>
+  <div class="containerSide">
+    <div class="row contTable">
+      <div class="contenedorMenu col-lg-2 col-md-3" id="contenedorMenu">
+        <app-menu-principal [estadoMenu]='estadoMenu' (fontValue)="setTamanioLetra($event)" (theme)="theme($event)">
+        </app-menu-principal>
+      </div>
+      <div class="contenedorBody col-lg-10 col-md-9" id="contenedorBody">
+        <div style="position: relative; height: 92%;">
+          <router-outlet>
+          </router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
