@@ -24,3 +24,26 @@ Y finalmente compilar desde el proyecto todolist    que empaqueta los demas proy
 
 Se debe desplegar en weblogic el proyecto backend. configurar el origen de datos, apuntando a base de datos local, y posteriormente, se podran realizar las consultas y actualizaciones desde el app frontend
 
+## ESTRUCTURA DE CÓDIGO
+
+FRONT: el codigo fuente de la aplicación se encuentra dentro de la carpeta src,  
+
+components: encontrará mainframe correposndiente a la estructura del proyecto front, menu-principal correspondiente a controles de accesibilidad, crud-usuarios correpsondiente al componente de administración de ususarios.
+
+models: encontrará los dtos front de mapeo de entidades
+
+pipes: encontrara directivas utilizadas para validaciones en formulario
+
+shared: 
+encontrará 
+
+* components: con el modal de confirmación genérico de la aplicación, y el toastr customisado.
+* guards: se creo una guarda de mock para simular la validacion de acceso a rutas.
+* models: modelos  genericos de los componentes compartidos.
+* services: servicio de generación de alertas, constantes.
+* global.service: encargado de la gestión de peticiones al BAckEnd
+* url.service: encargado de construir las url de peticion al Backend
+* shared.module: modulo compartido de la aplicación, para exportar componentes genéricos
+
+
+
