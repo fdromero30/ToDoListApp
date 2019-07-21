@@ -8,6 +8,8 @@
                 <h3 class="subtituloPagina">
                     Administrar usuarios del sistema
                 </h3>
+                <button class="btn btn-secondary pull-right" (click)="verModal()"><em class="fas fa-user-plus"></em>
+                    Crear Usuario</button>
             </div>
         </div>
         <div class="contenedorFormulario">
@@ -33,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody class="custom-body-table">
-                        <tr *ngFor="let usuario of usuarios">
+                        <tr *ngFor="let usuario of usuarios" style="font-size: 0.6rem;">
                             <td>
                                 {{usuario.nombre}}
                             </td>
@@ -47,7 +49,11 @@
                                 {{usuario.estado}}
                             </td>
                             <td>
-
+                                <button class="btn btn-secondary col-lg-5 col-md-5  col-sm-12 col-xs-12"
+                                    (click)="verModal()"> <em class="fas fa-user-edit"></em> Editar</button>
+                                <button class="btn btn-danger col-lg-5 col-md-5 col-sm-12 col-xs-12"> <em
+                                        class="fas fa-user-minus"></em>
+                                    Eliminar</button>
                             </td>
                         </tr>
                     </tbody>
