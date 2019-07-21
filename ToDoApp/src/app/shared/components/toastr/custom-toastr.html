@@ -1,0 +1,19 @@
+<div class="contenedor-toast {{options.messageClass}}">
+  <div class="row-toast">
+    <div class="col-11">
+
+      <div *ngIf="message && !options.enableHtml" role="alert" class="toast-message">
+        {{ message }}
+      </div>
+
+    </div>
+    <div id="botonCerrarToast" class="col-1 toast-message closeToast" style="font-size: 1rem;" tabindex="0"
+      (click)="remove()" (keyup.enter)="remove()">
+      <em class="fas fa-times-circle closeToast"></em>
+    </div>
+
+    <div class="col-3" *ngIf="options.messageClass=='toast-success'">
+      <button class="btn btn-sm btn-toast" (click)="action($event)">Deshacer</button>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { AlertService } from './../../shared/services/alert.service';
-import { UrlService } from './../../shared/services/url.service';
+import { UrlService } from './../../shared/url.service';
 import { GlobalService } from '../../shared/global.service';
 // import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, HostBinding, Input, Output, ɵConsole, ElementRef, OnInit } from '@angular/core';

@@ -29,9 +29,9 @@ input[type="checkbox"] {
   opacity: 1 !important;
   margin-top: 1px !important;
 }
-#toast-container > div {
-  opacity: 1;
-}
+    // #toast-container > div {
+    //   opacity: 1;
+    // }
 
 @function color($key) {
   @return map-get($theme-colors, $key);

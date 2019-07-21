@@ -11,6 +11,7 @@ import { OnlyLettersAndNumbersDirective } from '../pipes/onlyLettersAndNumbers.p
 import { OnlyNumberDirective } from '../pipes/onlyNumber.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationModalComponent } from './components/modal/confirmationModal.component';
+import { CustomToastr } from './components/toastr/custom-toastr';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ConfirmationModalComponent } from './components/modal/confirmationModal
     , OnlyNumberDirective
     , UppercaseInputDirective
     , ConfirmationModalComponent
+    , CustomToastr
   ],
 
   imports: [
@@ -26,10 +28,16 @@ import { ConfirmationModalComponent } from './components/modal/confirmationModal
     NgbModule.forRoot(),
     CommonModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(
+    //   {
+    //   toastComponent: CustomToastr,
+    //   timeOut: 3000
+    // }
+    )
   ],
-  entryComponents: [],
+  entryComponents: [CustomToastr],
   exports: [
+    CustomToastr,
     ConfirmationModalComponent,
     OnlyNumberDirective,
     OnlyLettersAndNumbersDirective

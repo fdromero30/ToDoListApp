@@ -1,5 +1,5 @@
 import { AuthGuard } from './shared/guards/authGuard/auth.guard';
-import { UrlService } from './shared/services/url.service';
+import { UrlService } from './shared/url.service';
 import { MainFrameModule } from './components/mainframe/mainframe.module';
 import { GlobalService } from './shared/global.service';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';

@@ -2,7 +2,7 @@ import { AlertService } from './shared/services/alert.service';
 import { UsuarioModel } from './models/usuario.model';
 import { GlobalService } from './shared/global.service';
 import { Component, OnInit } from '@angular/core';
-import { UrlService } from './shared/services/url.service';
+import { UrlService } from './shared/url.service';
 import { UrlControl } from './shared/models/generic.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
