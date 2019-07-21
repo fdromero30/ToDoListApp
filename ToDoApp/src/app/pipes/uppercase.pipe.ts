@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 @Directive({
-selector: '[uppercase]',
+  selector: '[uppercase]',
   host: {
     '(input)': '$event'
   }
@@ -11,8 +11,11 @@ export class UppercaseInputDirective {
 
   constructor(public ref: ElementRef) { }
 
-  @HostListener('input', ['$event']) onInput($event)
-  {
+  /**
+   * Directiva que convierte a mayusculas un input
+   * @param $event 
+   */
+  @HostListener('input', ['$event']) onInput($event) {
     var start = $event.target.selectionStart;
     var end = $event.target.selectionEnd;
     $event.target.value = $event.target.value.toUpperCase();

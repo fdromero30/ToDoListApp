@@ -24,7 +24,7 @@ export class CrudUsuariosDetalleComponent implements OnInit {
 
     ngOnInit() {
         if (!this.Usuario) {
-            this.Usuario = new UsuarioModel(null, null, null, null);
+            this.Usuario = new UsuarioModel(null, null, null);
             this.editar = false;
         } else {
             this.editar = true;
@@ -61,9 +61,9 @@ export class CrudUsuariosDetalleComponent implements OnInit {
      * metodo de validacion de formulario 
      */
     validarFormulario() {
-        if (this.Usuario.numDocumento != '' && this.Usuario.tipoDocumento != ''
+        if (this.Usuario.usuarioPK.numDocumento != '' && this.Usuario.usuarioPK.tipoDocumento != ''
             && this.Usuario.estado != '' && this.Usuario.nombre != ''
-            && this.Usuario.numDocumento && this.Usuario.estado && this.Usuario.nombre && this.Usuario.tipoDocumento
+            && this.Usuario.usuarioPK.numDocumento && this.Usuario.estado && this.Usuario.nombre && this.Usuario.usuarioPK.tipoDocumento
         ) {
             this.modalOptions.disabled = false;
         }

@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/platform-browser';
 import { AssetsService } from '../../shared/services/assets.service';
 import { Router } from '@angular/router';
-import { UsuarioModel } from 'src/app/models/usuario.model';
+import { UsuarioModel, UsuarioPkModel } from 'src/app/models/usuario.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CrudUsuariosDetalleComponent } from './crud-usuarios-detalle.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -30,7 +30,7 @@ export class CrudUsuariosComponent implements OnInit {
         this.modalOptions = new ConfirmationModalOptions(
             'Confirmacion Eliminacion', 'Esta seguro de Eliminar el Usuario?', 'SI', 'NO', 'fas fa-user-minus', false, null, 'Eliminar', false, 'btn-danger col-lg-5 col-md-12  col-sm-12 col-xs-12');
         this.usuarios = [];
-        let user = new UsuarioModel('USUARIO DE PRUEBA', 'CEDULA DE CIUDADANIA', '102376484', 'ACTIVO');
+        let user = new UsuarioModel('USUARIO PRUEBA', 'ACTIVO', new UsuarioPkModel('CEDULA', '101212312312'));
         this.usuarios.push(user, user, user);
     }
 

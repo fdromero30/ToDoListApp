@@ -8,10 +8,14 @@ export class OnlyLettersAndNumbersDirective {
 
   constructor(private _el: ElementRef) { }
 
+  /**
+   * Direcriva para permitir el ingreso de letras y numeros unicamente en un input
+   * @param event 
+   */
   @HostListener('input', ['$event']) onInputChange(event) {
     const initalValue = this._el.nativeElement.value;
     this._el.nativeElement.value = initalValue.replace(/[^A-Za-z0-9Ññ ]*/g, '');
-    if ( initalValue !== this._el.nativeElement.value) {
+    if (initalValue !== this._el.nativeElement.value) {
       event.stopPropagation();
     }
   }

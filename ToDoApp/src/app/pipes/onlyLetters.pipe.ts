@@ -7,11 +7,14 @@ import { NgControl } from '@angular/forms';
 export class OnlyLettersDirective {
 
   constructor(private _el: ElementRef) { }
-
+  /**
+   *  direcitiva para permitir el ingreso de letras solamente en un input
+   * @param event 
+   */
   @HostListener('input', ['$event']) onInputChange(event) {
     const initalValue = this._el.nativeElement.value;
     this._el.nativeElement.value = initalValue.replace(/[^a-zA-Z +àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ ]*/g, '');
-    if ( initalValue !== this._el.nativeElement.value) {
+    if (initalValue !== this._el.nativeElement.value) {
       event.stopPropagation();
     }
   }

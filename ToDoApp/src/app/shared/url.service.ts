@@ -25,7 +25,7 @@ export class UrlService {
       case 'guardarNuevoUsuario':
         return '/servicios/usuario/guardarNuevoUsuario';
       case 'consultarUsuarios':
-        return '/servicios/usuario/consultarUsuarios';
+        return '/servicios/usuario/';
       case 'eliminarUsuario':
         return '/servicios/usuario/eliminarUsuario';
       case 'actualizarUsuario':
