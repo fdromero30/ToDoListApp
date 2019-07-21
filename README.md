@@ -1,7 +1,7 @@
 ToDoListApp
 
 
-##FRONTEND
+## FRONTEND
 
 Una vez clonado o descargado el repositorio, ejecute 'npm i' para poder instalar las dependencias necesarias del proyecto angular.
 
