@@ -6,7 +6,7 @@
             </span>
         </button>
     </div>
-    <div class="row">
+    <div class="row" style="padding-bottom: 2%;">
         <div class="col-12">
             <h1 *ngIf="editar" class="text-primary">
                 Editar Usuario
@@ -14,6 +14,38 @@
             <h1 *ngIf="!editar" class="text-primary">
                 Crear Usuario
             </h1>
+            <div class="col-12">
+                <label for="inputNombreUsuario">Nombre</label>
+                <input type="text" id="inputNombreUsuario" class="form-control" lettersOnly uppercase>
+            </div>
+            <div class="col-12">
+                <label for="selectTipoDocUsuario">
+                    Tipo Documento
+                </label>
+                <select class="form-control" id="selectTipoDocUsuario">
+
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="inputNumDocumento">
+                    Numero Documento
+                </label>
+                <input type="text" id="inputNumDocumento" class="form-control" lettersAndNumbersOnly>
+            </div>
+
+            <div class="col-12">
+                <label for="selectEstadoUsuario">
+                    Estado
+                </label>
+                <select class="form-control" id="selectEstadoUsuario">
+
+                </select>
+            </div>
+            <div class="col-12" style="padding-top: 1%; padding-bottom:1%">
+                <confirmation-app-modal *ngIf="modalOptions" [msg]="modalOptions" (resp)="handlerModal()">
+
+                </confirmation-app-modal>
+            </div>
         </div>
     </div>
 </div>

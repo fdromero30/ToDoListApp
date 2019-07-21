@@ -10,6 +10,7 @@ import { OnlyLettersDirective } from '../pipes/onlyLetters.pipe';
 import { OnlyLettersAndNumbersDirective } from '../pipes/onlyLettersAndNumbers.pipe';
 import { OnlyNumberDirective } from '../pipes/onlyNumber.pipe';
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationModalComponent } from './components/modal/confirmationModal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
     , OnlyLettersDirective
     , OnlyNumberDirective
     , UppercaseInputDirective
-
+    , ConfirmationModalComponent
   ],
 
   imports: [
@@ -29,7 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   entryComponents: [],
   exports: [
-
+    ConfirmationModalComponent,
     OnlyNumberDirective,
     OnlyLettersAndNumbersDirective
     , OnlyLettersDirective

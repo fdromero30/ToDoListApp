@@ -1,0 +1,31 @@
+<ng-template #modalconfirmacion class="modal">
+  <div class="modal-header">
+    <h4 class="modal-title text-primary" style="font-weight:bold; font-size:18px">{{modalOptions.title}}</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="font-family: sans-serif; font-size: 13px;">
+    {{modalOptions.message}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="aceptar()">{{modalOptions.forwardLabel}}</button>
+    <button type="button" class="btn btn-danger" (click)="cancelar()">{{modalOptions.dismissLabel}}</button>
+  </div>
+</ng-template>
+
+<!-- <button *ngIf="modalOptions.icon" class="btn btn-secondary pull-right align-bottom" [disabled]="modalOptions.disabled"
+  (click)="open(modalconfirmacion)">
+  <span class="{{modalOptions.icon}}"></span>
+</button> -->
+
+<button *ngIf="modalOptions.buttonName" class="btn {{modalOptions.clase}}"
+  [disabled]="modalOptions.disabled"
+  [ngClass]="(modalOptions.disabled)?'btnDisabled btn ':'btn '"
+  (click)="open(modalconfirmacion)">
+  <em *ngIf="modalOptions.icon" class="{{modalOptions.icon}}"></em>
+  {{modalOptions.buttonName}}
+</button>
+
+<!-- pull-right align-bottom -->
