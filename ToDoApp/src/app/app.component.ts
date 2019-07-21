@@ -16,36 +16,10 @@ declare var jQuery;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public title = 'DemoAccesibilidad';
-  public idioma = 'Español';
-  public tamanoletra: number;
-  public style: any;
-  public iconDemo: string;
-  public tamanoletras: any = null;
-  public modificacionmenu: any;
-  public modificacioncontenido: any;
-  public idiomas: any;
-  public imageuser: string;
-  public iconomenColor: string;
-  public iconomenDark: string;
-  public username: string;
-  public hidden: any;
-  public escogerRol: boolean;
-  public menuprincipal: boolean;
-  private fechaExpiracionToken = null;
-  private usuario: UsuarioModel;
-  private callValidateToken: any;
 
-  private listaPermisos: any[];
 
   constructor(
-
-    private global: GlobalService
-    , private urlService: UrlService
-    , private alertService: AlertService
-    , private route: ActivatedRoute
-    , private router: Router
-    , private modalService: NgbModal
+    private router: Router
   ) {
   }
   ngOnInit() {
