@@ -45,5 +45,10 @@ encontrará
 * url.service: encargado de construir las url de peticion al Backend
 * shared.module: modulo compartido de la aplicación, para exportar componentes genéricos
 
+BACK: se estructura de la siguiente manera  
 
+todolist-web: la capa que expone los servicios REST.
+todolist-ejb: la capa de negocio donde se realizan las validaciones y logica de negocio, tambien se encuentran entidades, dtos y manejadores.
 
+ServicioUsuario: API rest, con metodos CRUD.
+NegocioUsuario: Negocio donde se hacen los llamados al ManejadorUsuario que extiende del manejador crud encargado de gestionar la persistencia
